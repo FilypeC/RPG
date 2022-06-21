@@ -37,35 +37,41 @@ namespace RPG
 
         private void SalvarBt_Click(object sender, EventArgs e)
         {
-            var Persona = new Persona();
-            Persona.Nome = NomeTb.Text;
-            Persona.Classe = Convert.ToString(ClasseCb.SelectedItem);
-            Persona.For = Convert.ToInt32 (ForTb.Text);
-            Persona.Dex = Convert.ToInt32 (DexTb.Text);
-            Persona.Con = Convert.ToInt32 (ConTb.Text);
-            Persona.Int = Convert.ToInt32 (IntTb.Text);
-            Persona.Per = Convert.ToInt32 (PerTb.Text);
-            Persona.Car = Convert.ToInt32 (CarTb.Text);
-            foreach (var van in VantagemBx.SelectedItems)
+            try
             {
-                Persona.Vantagem.Add(van.ToString());
-            }
-            foreach (var des in DesvantagemBx.SelectedItems)
-            {
-                Persona.Desvantagem.Add(des.ToString());
-            }
-            string json = JsonConvert.SerializeObject(Persona);
+                var Persona = new Persona();
+                Persona.Nome = NomeTb.Text;
+                Persona.Classe = Convert.ToString(ClasseCb.SelectedItem);
+                Persona.For = Convert.ToInt32(ForTb.Text);
+                Persona.Dex = Convert.ToInt32(DexTb.Text);
+                Persona.Con = Convert.ToInt32(ConTb.Text);
+                Persona.Int = Convert.ToInt32(IntTb.Text);
+                Persona.Per = Convert.ToInt32(PerTb.Text);
+                Persona.Car = Convert.ToInt32(CarTb.Text);
+                foreach (var van in VantagemBx.SelectedItems)
+                {
+                    Persona.Vantagem.Add(van.ToString());
+                }
+                foreach (var des in DesvantagemBx.SelectedItems)
+                {
+                    Persona.Desvantagem.Add(des.ToString());
+                }
+                string json = JsonConvert.SerializeObject(Persona);
 
-            var sfd = new SaveFileDialog();
-            sfd.Title = "Salvar";
-            if (sfd.ShowDialog() == DialogResult.OK)
+                var sfd = new SaveFileDialog();
+                sfd.Title = "Salvar";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+
+                    File.WriteAllText(sfd.FileName, json);
+                    MessageBox.Show("Personagem Salvo!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Ação cancelada!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }catch (Exception ex)
             {
-                
-                File.WriteAllText(sfd.FileName, json);
-                MessageBox.Show("Personagem Salvo!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Erro:" , ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-                MessageBox.Show("Ação cancelada!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ForPlusBt_Click(object sender, EventArgs e)
@@ -179,27 +185,34 @@ namespace RPG
 
         private void CarregarBt_Click(object sender, EventArgs e)
         {
-            /*Persona.Nome = NomeTb.Text;
-            Persona.Classe = Convert.ToString(ClasseCb.SelectedItem);
-            Persona.For = Convert.ToInt32(ForTb.Text);
-            Persona.Dex = Convert.ToInt32(DexTb.Text);
-            Persona.Con = Convert.ToInt32(ConTb.Text);
-            Persona.Int = Convert.ToInt32(IntTb.Text);
-            Persona.Per = Convert.ToInt32(PerTb.Text);
-            Persona.Car = Convert.ToInt32(CarTb.Text);
-            Persona.Vantagem = VantagemBx.Text;
-            Persona.Desvantagem = DesvantagemBx.Text;
 
-            var sfd = new OpenFileDialog();
-            sfd.Title = "Salvar";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            try
             {
-                var Leitura = File.ReadAllText(sfd.FileName);
-                var personagem = JsonConvert.DeserializeObject<Persona>(Leitura);
-                MessageBox.Show("Personagem Salvo!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var sfd = new OpenFileDialog();
+                sfd.Title = "Carregar";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var Leitura = File.ReadAllText(sfd.FileName);
+                    var personagem = JsonConvert.DeserializeObject<Persona>(Leitura);
+                    NomeTb.Text = personagem.Nome;
+                    ClasseCb.SelectedItem = personagem.Classe;
+                    ForTb.Text = Convert.ToString(personagem.For);
+                    DexTb.Text = Convert.ToString(personagem.Dex);
+                    ConTb.Text = Convert.ToString(personagem.Con);
+                    IntTb.Text = Convert.ToString(personagem.Int);
+                    PerTb.Text = Convert.ToString(personagem.Per);
+                    CarTb.Text = Convert.ToString(personagem.Car);
+                    //VantagemBx.Text = personagem.Vantagem;
+                    //DesvantagemBx.Text = Persona.Desvantagem;
+                    MessageBox.Show("Personagem Carregado!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Ação cancelada!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-                MessageBox.Show("Ação cancelada!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: ", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
