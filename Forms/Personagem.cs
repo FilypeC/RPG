@@ -70,7 +70,7 @@ namespace RPG
                     MessageBox.Show("Ação cancelada!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }catch (Exception ex)
             {
-                MessageBox.Show("Erro:" , ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -202,8 +202,11 @@ namespace RPG
                     IntTb.Text = Convert.ToString(personagem.Int);
                     PerTb.Text = Convert.ToString(personagem.Per);
                     CarTb.Text = Convert.ToString(personagem.Car);
-                    //VantagemBx.Text = personagem.Vantagem;
-                    //DesvantagemBx.Text = Persona.Desvantagem;
+                    /*VantagemBx.Items.Add(personagem.Vantagem);
+                    VantagemBx.SetSelected (0, true);
+                    DesvantagemBx.Items.Add(personagem.Desvantagem);
+                    DesvantagemBx.SetSelected(0, true);
+                    */
                     MessageBox.Show("Personagem Carregado!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -211,7 +214,7 @@ namespace RPG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: ", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
