@@ -1,0 +1,109 @@
+.box {
+    background: rgba(0,0,0,0.6);
+    clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px, 30px 0);
+    border-left: 5px solid var(--main-cinza);
+}
+
+/****************************** Status *****/
+
+
+.pontos-conteudo {
+    padding: 2em 10%;
+}
+
+.ponto-titulo {
+    color: var(--main-branco);
+    text-transform: uppercase;
+    font-size: 2.5em;
+}
+
+.controle {
+    background: var(--main-preto);
+    border-radius: 25px;
+    padding: 5px;
+    align-items: center;
+}
+
+.controle-contador {
+    width: 40px;
+    background: none;
+    border: 0;
+    margin: 0 1rem;
+    color: var(--main-branco);
+    text-align: center;
+    font-size: 2.5em;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.controle-ajuste {
+    width: 40px;
+    border-radius: 50%;
+    color: var(--main-cinza);
+    font-size: 4em;
+    background: var(--main-preto);
+    text-align: center;
+    border: 3px solid var(--main-cinza);
+    cursor: pointer;
+}
+
+.linha {
+    border-color: var(--main-cinza);
+}
+
+.salvar {
+    margin-top: 1em;
+    font-size: 2em;
+    text-transform: uppercase;
+    padding: 0.2em 1em;
+    float: right;
+    border: 3px solid var(--main-branco);
+    background: var(--main-branco);
+    clip-path: polygon(100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 0);
+    cursor: pointer;
+}
+
+.salvar:hover {
+    background: var(--main-preto);
+    color: var(--main-branco)
+}
+
+
+
+/****************************** Estatísticas *****/
+.estatisticas {
+    flex-basis: 23%;
+}
+
+.estatistica {
+    color: var(--main-branco);
+    display: flex;
+    align-items: flex-start;
+}
+
+.estatistica-titulo {
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--main-cinza);
+    flex-basis: 40%;
+    text-transform: uppercase;
+}
+
+.estatistica-valor {
+    flex-basis: 60%;
+    margin: 10px 0 0;
+
+}
+
+.estatistica-valor::after {
+    content: "";
+    display: block;
+    border: 1px solid var(--main-cinza);
+    border-radius: 50%;
+}
+
+.estatistica-numero {
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    margin: 0;
+}
