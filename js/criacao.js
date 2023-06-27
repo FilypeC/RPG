@@ -1,5 +1,7 @@
 const controle = document.querySelectorAll("[data-controle]")
 const estatistica = document.querySelectorAll("[data-estatistica]")
+const salvarItem = document.querySelectorId("salvar")
+
 
 const statos = {
  "forca":{
@@ -39,4 +41,37 @@ function atualizaEstatistica(ponto) {
     estatistica.forEach( (elemento ) => {
         elemento.textContent = parseInt(elemento.textContent) + statos[ponto][elemento.dataset.estatistica]
     })
+}
+
+/////////////////////////////////////////////////
+
+salvarItem.forEach( (elemento) => {
+    elemento.addEventListener('click', (evento) => {
+        salvarInformacoes(estatistica,controle)
+    })
+})
+
+function salvarInformacoes() {
+    const data = {
+        forca: document.querySelector("[data-ponto='forca']").value,
+        agilidade: document.querySelector("[data-ponto='agilidade']").value,
+        vitalidade: document.querySelector("[data-ponto='vitalidade']").value,
+        inteligencia: document.querySelector("[data-ponto='inteligencia']").value,
+        estatisticaForca: document.querySelector("[data-estatistica='forca']").textContent,
+        estatisticaHP: document.querySelector("[data-estatistica='hp']").textContent,
+        estatisticaMana: document.querySelector("[data-estatistica='mana']").textContent,
+        estatisticaVelocidade: document.querySelector("[data-estatistica='velocidade']").textContent
+    };
+
+    const jsonData = JSON.stringify(data);
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "informacoes.json";
+    link.click();
+
+    // Limpa a URL do objeto após o download
+    URL.revokeObjectURL(url);
 }
