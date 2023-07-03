@@ -26,18 +26,14 @@ controle.forEach((elemento) => {
 
 function manipulaDados(operacao, controle) {
     const ponto = controle.querySelector("[data-contador]");
-    if (ponto.value == 0 && operacao ==="-"){
-        return 0;}
-        else{
 
-            if (operacao === "-") {
-            ponto.value = parseInt(ponto.value) - 1;
-            return -1;
-            } else {
-            ponto.value = parseInt(ponto.value) + 1;
-            return 1;
-        }
-        }
+    if (operacao === "-") {
+        ponto.value = parseInt(ponto.value) - 1;
+        return -1;
+    } else {
+        ponto.value = parseInt(ponto.value) + 1;
+        return 1;
+    }
 }
 
 function atualizaEstatistica(ponto, multiplicador) {
@@ -49,12 +45,14 @@ function atualizaEstatistica(ponto, multiplicador) {
     })
 }
 
+
+
 function salvarInformacoes() {
     const data = {
-        forca: document.querySelector("[data-ponto='forca']").value,
-        agilidade: document.querySelector("[data-ponto='agilidade']").value,
-        vitalidade: document.querySelector("[data-ponto='vitalidade']").value,
-        inteligencia: document.querySelector("[data-ponto='inteligencia']").value,
+        //forca: document.querySelectorall("[data-ponto='forca']").value,
+        //agilidade: document.querySelector("[data-ponto='agilidade']").value,
+        //vitalidade: document.querySelector("[data-ponto='vitalidade']").value,
+        inteligencia: document.querySelector("controle-contador").value,
         estatisticaForca: document.querySelector("[data-estatistica='forca']").textContent,
         estatisticaHP: document.querySelector("[data-estatistica='hp']").textContent,
         estatisticaMana: document.querySelector("[data-estatistica='mana']").textContent,
