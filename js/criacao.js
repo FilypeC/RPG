@@ -49,10 +49,10 @@ function atualizaEstatistica(ponto, multiplicador) {
 
 function salvarInformacoes() {
     const data = {
-        //forca: document.querySelectorall("[data-ponto='forca']").value,
-        //agilidade: document.querySelector("[data-ponto='agilidade']").value,
-        //vitalidade: document.querySelector("[data-ponto='vitalidade']").value,
-        inteligencia: document.querySelector("controle-contador").value,
+        forca: document.querySelector("[data-contador='forca']").value,
+        agilidade: document.querySelector("[data-contador='agilidade']").value,
+        vitalidade: document.querySelector("[data-contador='vitalidade']").value,
+        inteligencia: document.querySelector("[data-contador='inteligencia']").value,
         estatisticaForca: document.querySelector("[data-estatistica='forca']").textContent,
         estatisticaHP: document.querySelector("[data-estatistica='hp']").textContent,
         estatisticaMana: document.querySelector("[data-estatistica='mana']").textContent,
@@ -65,7 +65,7 @@ function salvarInformacoes() {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = "informacoes.json";
+    link.download = "personagem.json";
     link.click();
 
     // Limpa a URL do objeto após o download
