@@ -26,15 +26,20 @@ controle.forEach((elemento) => {
 
 function manipulaDados(operacao, controle) {
     const ponto = controle.querySelector("[data-contador]");
-
-    if (operacao === "-") {
-        ponto.value = parseInt(ponto.value) - 1;
-        return -1;
-    } else {
-        ponto.value = parseInt(ponto.value) + 1;
-        return 1;
-    }
+				if (operacao ==="-"&& ponto.value == 0) {
+					return 0;
+				}
+				else{
+					if (operacao === "-") {
+						ponto.value = parseInt(ponto.value) - 1;
+						return -1;
+		} else {
+						ponto.value = parseInt(ponto.value) + 1;
+						return 1;
+		}
 }
+				}
+    
 
 function atualizaEstatistica(ponto, multiplicador) {
     estatistica.forEach((elemento) => {
@@ -71,3 +76,37 @@ function salvarInformacoes() {
     // Limpa a URL do objeto após o download
     URL.revokeObjectURL(url);
 }
+
+
+//carregar
+
+function carregarInformacoes() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+  
+    input.onchange = function (event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function (event) {
+        const jsonData = event.target.result;
+        const data = JSON.parse(jsonData);
+								
+        document.querySelector("[data-contador='forca']").value = data.forca;
+        document.querySelector("[data-contador='agilidade']").value = data.agilidade;
+        document.querySelector("[data-contador='vitalidade']").value = data.vitalidade;
+        document.querySelector("[data-contador='inteligencia']").value = data.inteligencia;
+        document.querySelector("[data-estatistica='forca']").textContent = data.estatisticaForca;
+        document.querySelector("[data-estatistica='hp']").textContent = data.estatisticaHP;
+        document.querySelector("[data-estatistica='mana']").textContent = data.estatisticaMana;
+        document.querySelector("[data-estatistica='velocidade']").textContent = data.estatisticaVelocidade;
+								console.log(data);
+      };
+  
+      reader.readAsText(file);
+    };
+				
+    input.click();
+  }
+  
